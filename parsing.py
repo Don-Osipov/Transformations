@@ -18,7 +18,7 @@ def parse_file(fname, points, transform, screen, color):
             args = getArgs(i, file)
             add_edge(points, *args)
 
-        elif "indent" in line:
+        elif "ident" in line:
             ident(transform)
 
         elif "scale" in line:
@@ -30,7 +30,10 @@ def parse_file(fname, points, transform, screen, color):
         elif "move" in line:
             args = getArgs(i, file)
             moveArr = make_translate(*args)
+            print(moveArr)
             matrix_mult(moveArr, transform)
+            print(transform)
+            print_matrix(transform)
 
         elif "rotate" in line:
             args = getArgs(i, file)
@@ -65,13 +68,9 @@ def getArgs(i, file):
 
 
 def rotate(args, transform):
-    # print(transform)
-    # print(transform)
+
     if args[0] == "x":
-        # print(transform)
         rotationArr = make_rotX(args[1])
-        # intify(transform)
-        # print(rotationArr)
         matrix_mult(rotationArr, transform)
     if args[0] == "y":
         rotationArr = make_rotY(args[1])
@@ -79,4 +78,5 @@ def rotate(args, transform):
     if args[0] == "z":
         rotationArr = make_rotZ(args[1])
         matrix_mult(rotationArr, transform)
+    # print_matrix(transform)
 

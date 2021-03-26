@@ -11,7 +11,7 @@ import math
 
 
 def make_translate(x, y, z):
-    translateMatrix = [[1, 0, 0, x], [0, 1, 0, y], [0, 0, 1, z], [0, 0, 0, 1]]
+    translateMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [x, y, z, 1]]
     return translateMatrix
 
 
@@ -24,8 +24,8 @@ def make_rotX(theta):
     rTheta = math.radians(theta)
     rotationMatrix = [
         [1, 0, 0, 0],
-        [0, math.cos(rTheta), -math.sin(rTheta), 0],
-        [0, math.sin(rTheta), math.cos(rTheta), 0],
+        [0, math.cos(rTheta), math.sin(rTheta), 0],
+        [0, -math.sin(rTheta), math.cos(rTheta), 0],
         [0, 0, 0, 1],
     ]
     return rotationMatrix
@@ -34,9 +34,9 @@ def make_rotX(theta):
 def make_rotY(theta):
     rTheta = math.radians(theta)
     rotationMatrix = [
-        [math.cos(rTheta), 0, math.sin(rTheta), 0],
+        [math.cos(rTheta), 0, -math.sin(rTheta), 0],
         [0, 1, 0, 0],
-        [-math.sin(rTheta), 0, math.cos(rTheta), 0],
+        [math.sin(rTheta), 0, math.cos(rTheta), 0],
         [0, 0, 0, 1],
     ]
     return rotationMatrix
@@ -44,9 +44,11 @@ def make_rotY(theta):
 
 def make_rotZ(theta):
     rTheta = math.radians(theta)
+    print(theta)
+    print(rTheta)
     rotationMatrix = [
-        [math.cos(rTheta), -math.sin(rTheta), 0, 0],
-        [math.sin(rTheta), math.cos(rTheta), 0, 0],
+        [math.cos(rTheta), math.sin(rTheta), 0, 0],
+        [-math.sin(rTheta), math.cos(rTheta), 0, 0],
         [0, 0, 1, 0],
         [0, 0, 0, 1],
     ]
@@ -62,6 +64,13 @@ def print_matrix(matrix):
             s += str(matrix[c][r]) + " "
         s += "\n"
     print(s)
+
+
+# def print_matrix(matrix):
+#     for row in matrix:
+#         for el in row:
+#             print(f"{el} ", end="")
+#         print()
 
 
 # turn the paramter matrix into an identity matrix
